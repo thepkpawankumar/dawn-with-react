@@ -1,8 +1,10 @@
+import Counter from "./components/Counter"
 function App() {
 
   return (
     <>
-     <p>Hello from react</p>
+   
+   <Counter />
     </>
   )
 }
