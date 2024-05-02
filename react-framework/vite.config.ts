@@ -7,7 +7,8 @@ export default defineConfig({
   build: {
     rollupOptions: {
       input: {
-        counter: "src/main.tsx"
+        'counter': 'src/elements/counter/main.tsx',
+        'add-to-cart': 'src/elements/add-to-cart/main.tsx'
       },
       output: {
         dir: '../assets',

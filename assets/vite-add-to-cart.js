@@ -1,0 +1,1 @@
+import{j as t,c as e,R as r}from"./vite-client.js";function n(){return t.jsx(t.Fragment,{children:t.jsx("button",{children:"Add To Cart"})})}e.createRoot(document.getElementById("add-to-cart")).render(t.jsx(r.StrictMode,{children:t.jsx(n,{})}));
