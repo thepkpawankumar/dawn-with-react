@@ -1,5 +1,42 @@
-<p>framework 123</p>
-<div id="counter"></div>
-<div id="add-to-cart"></div>
-<script type="module" src="{{ 'vite-counter.js' | asset_url }}" defer></script>
-<script type="module" src="{{ 'vite-add-to-cart.js' | asset_url }}" defer></script>
+<div id="framework-snippet">
+  <p>framework 123</p>
+  <div id="counter"></div>
+  <div
+    id="add-to-cart"
+    data-variant-id="{{ product.selected_or_first_available_variant.id }}"
+    data-product-title="{{ product.title }}"
+  ></div>
+  <!--
+    We have to add type=module here to support import statements, import is used in both files to include
+    vite-client.js (react framework code)
+  -->
+  {% comment %}
+    <script type="module" src="{{ 'vite-counter.js' | asset_url }}" defer></script>
+    <script type="module" src="{{ 'vite-add-to-cart.js' | asset_url }}" defer></script>
+  {% endcomment %}
+</div>
+
+<script>
+  const scripts = ["{{ 'vite-counter.js' | asset_url }}", "{{ 'vite-add-to-cart.js' | asset_url }}"];
+
+  const observer = new IntersectionObserver(
+    (enteries, observer) => {
+      if (enteries[0].isIntersecting) {
+        for (const script of scripts) {
+          const scriptElement = document.createElement('script');
+          scriptElement.setAttribute('type', 'module');
+          scriptElement.setAttribute('src', script);
+          scriptElement.setAttribute('defer', 'defer');
+
+          document.body.appendChild(scriptElement);
+        }
+
+        console.log('scripts added');
+        observer.disconnect();
+      }
+    },
+    { thresold: 1 }
+  ); // After the element completely visible
+
+  observer.observe(document.getElementById('framework-snippet'));
+</script>

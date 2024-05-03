@@ -1,4 +1,7 @@
 function getFocusableElements(container) {
+  if(!container){
+    return;
+  }
   return Array.from(
     container.querySelectorAll(
       "summary, a[href], button:enabled, [tabindex]:not([tabindex^='-']), [draggable], area, input:not([type=hidden]):enabled, select:enabled, textarea:enabled, object, iframe"
@@ -25,6 +28,9 @@ document.querySelectorAll('[id^="Details-"] summary').forEach((summary) => {
 const trapFocusHandlers = {};
 
 function trapFocus(container, elementToFocus = container) {
+  if(!container){
+    return;
+  }
   var elements = getFocusableElements(container);
   var first = elements[0];
   var last = elements[elements.length - 1];

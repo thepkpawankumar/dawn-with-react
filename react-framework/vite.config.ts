@@ -6,7 +6,7 @@ export default defineConfig({
   plugins: [react()],
   build: {
     rollupOptions: {
-      input: {
+      input: { // Addition file vite-client.js is created and it contains the code of react framework
         'counter': 'src/elements/counter/main.tsx',
         'add-to-cart': 'src/elements/add-to-cart/main.tsx'
       },
