@@ -3,7 +3,8 @@ function AddToCartButton({variantId, productTitle}: {variantId: number, productT
   async function addToCart() {
 
   const cartDrawer: any = document.querySelector("cart-drawer");
-  const addToCartRequest =  await fetch(`${window.routes.cart_add_url}.js`, {
+  
+  const addToCartRequest =  await fetch(`/cart/add.js`, {
       method: "POST",
       headers: {
         'Content-type': "application/json"
@@ -21,8 +22,11 @@ function AddToCartButton({variantId, productTitle}: {variantId: number, productT
     });
 
     let response = await addToCartRequest.json();
-    console.log(response);
+    
     cartDrawer.renderContents(response);
+    
+    cartDrawer.classList.remove("is-empty");
+    
   }
   return (
     <>
